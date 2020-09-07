@@ -5,8 +5,14 @@
     <c:param name="content">
         <c:choose>
             <c:when test="${report != null}">
-                <h2>日報　詳細ページ</h2>
-
+                <div>
+                    <h2>日報　詳細ページ</h2>
+                    <form method="POST" action="<c:url value='/likes/create' />">
+                    <input type="hidden" name="report.id" value="${report.id}" />
+                        <button type="submit">いいね！</button>
+                    </form>
+                    <a href="<c:url value="/likes/index?id=${report.id}" />">いいね！した社員</a>( ${likes_count} 件)
+                </div>
                 <table>
                     <tbody>
                         <tr>

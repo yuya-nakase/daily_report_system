@@ -20,7 +20,7 @@ import javax.persistence.Table;
             ),
     @NamedQuery(
             name = "getLikedEmployees",
-            query = "SELECT l FROM Like AS l WHERE l.employee = :employee ORDER BY l.id DESC"
+            query = "SELECT l FROM Like AS l WHERE l.report = :report ORDER BY l.id DESC"
             )
 })
 @Entity
