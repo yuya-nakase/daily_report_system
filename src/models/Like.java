@@ -12,7 +12,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Table(name = "likes")
-//該当する日報のいいねの数といいねを押した社員の一覧を取得
+//"getLikeCount"=該当する日報のいいねの数,"getLikedEmployees"=いいねを押した社員の一覧,"getLikedDecide"=いいね済みか判断
 @NamedQueries({
     @NamedQuery(
             name = "getLikeCount",
@@ -21,6 +21,10 @@ import javax.persistence.Table;
     @NamedQuery(
             name = "getLikedEmployees",
             query = "SELECT l FROM Like AS l WHERE l.report = :report ORDER BY l.id DESC"
+            ),
+    @NamedQuery(
+            name = "getLikedDecide",
+            query = "SELECT l FROM Like AS l WHERE l.report = :report AND l.employee = :employee"
             )
 })
 @Entity

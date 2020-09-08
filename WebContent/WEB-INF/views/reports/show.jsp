@@ -7,10 +7,20 @@
             <c:when test="${report != null}">
                 <div>
                     <h2>日報　詳細ページ</h2>
-                    <form method="POST" action="<c:url value='/likes/create' />">
-                    <input type="hidden" name="report.id" value="${report.id}" />
-                        <button type="submit">いいね！</button>
-                    </form>
+                    <c:choose>
+                        <c:when test="${like == null}">
+                            <form method="POST" action="<c:url value='/likes/create' />">
+                            <input type="hidden" name="report.id" value="${report.id}" />
+                                <button type="submit">いいね！</button>
+                            </form>
+                        </c:when>
+                        <c:otherwise>
+                           <form method="POST" action="<c:url value='/likes/destroy' />">
+                            <input type="hidden" name="report.id" value="${report.id}" />
+                                <button type="submit" style="color:blue">いいね！</button>
+                            </form>
+                        </c:otherwise>
+                    </c:choose>
                     <a href="<c:url value="/likes/index?id=${report.id}" />">いいね！した社員</a>( ${likes_count} 件)
                 </div>
                 <table>
